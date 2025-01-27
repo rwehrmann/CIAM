@@ -1,0 +1,32 @@
+
+@host = http://localhost:8181
+
+# Gat the users
+GET {{host}}/v1/data/users
+Content-Type: application/json
+
+###
+
+# This below query asks whether the user bob can read the finance resource, where the id of the object is id123.
+POST {{host}}/v1/data/app/rbac/allow
+Content-Type: application/json
+
+{
+  "input": {
+    "user": "bob",
+    "action": "read",
+    "object": "id123",
+    "type": "finance"
+  }
+}
+
+###
+GET http://localhost:7002/data/config
+
+###
+
+GET http://localhost:7002/policy-data
+
+###
+
+GET http://localhost:7002/static
